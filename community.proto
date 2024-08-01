@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "./community-proto";
+
+// Service with peers' info from edu platform
+service CommunityService {
+  // Method for checking that the user is a school 21's student
+  rpc Email (EmailIn) returns (EmailOut);
+}
+
+// Data for searching for matches in peers' info
+message EmailIn {
+  // User's E-mail address
+  string Email = 1;
+}
+
+// Response with found match
+message EmailOut {
+  bool DoesExist = 1;
+}
