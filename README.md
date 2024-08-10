@@ -43,7 +43,7 @@ Response with found match
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| DoesExist | [bool](#bool) |  |  |
+| IsExist | [bool](#bool) |  |  |
 
 
 
@@ -63,7 +63,7 @@ Service with peers&#39; info from edu platform
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Email | [.EmailIn](#EmailIn) | [.EmailOut](#EmailOut) | Method for checking that the user is a school 21&#39;s student |
+| IsPeerExist | [.EmailIn](#EmailIn) | [.EmailOut](#EmailOut) | Method for checking that the user is a school 21&#39;s student |
 
  
 

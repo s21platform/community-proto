@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CommunityService_Email_FullMethodName = "/CommunityService/Email"
+	CommunityService_IsPeerExist_FullMethodName = "/CommunityService/IsPeerExist"
 )
 
 // CommunityServiceClient is the client API for CommunityService service.
@@ -29,7 +29,7 @@ const (
 // Service with peers' info from edu platform
 type CommunityServiceClient interface {
 	// Method for checking that the user is a school 21's student
-	Email(ctx context.Context, in *EmailIn, opts ...grpc.CallOption) (*EmailOut, error)
+	IsPeerExist(ctx context.Context, in *EmailIn, opts ...grpc.CallOption) (*EmailOut, error)
 }
 
 type communityServiceClient struct {
@@ -40,10 +40,10 @@ func NewCommunityServiceClient(cc grpc.ClientConnInterface) CommunityServiceClie
 	return &communityServiceClient{cc}
 }
 
-func (c *communityServiceClient) Email(ctx context.Context, in *EmailIn, opts ...grpc.CallOption) (*EmailOut, error) {
+func (c *communityServiceClient) IsPeerExist(ctx context.Context, in *EmailIn, opts ...grpc.CallOption) (*EmailOut, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(EmailOut)
-	err := c.cc.Invoke(ctx, CommunityService_Email_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, CommunityService_IsPeerExist_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +57,7 @@ func (c *communityServiceClient) Email(ctx context.Context, in *EmailIn, opts ..
 // Service with peers' info from edu platform
 type CommunityServiceServer interface {
 	// Method for checking that the user is a school 21's student
-	Email(context.Context, *EmailIn) (*EmailOut, error)
+	IsPeerExist(context.Context, *EmailIn) (*EmailOut, error)
 	mustEmbedUnimplementedCommunityServiceServer()
 }
 
@@ -68,8 +68,8 @@ type CommunityServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCommunityServiceServer struct{}
 
-func (UnimplementedCommunityServiceServer) Email(context.Context, *EmailIn) (*EmailOut, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Email not implemented")
+func (UnimplementedCommunityServiceServer) IsPeerExist(context.Context, *EmailIn) (*EmailOut, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsPeerExist not implemented")
 }
 func (UnimplementedCommunityServiceServer) mustEmbedUnimplementedCommunityServiceServer() {}
 func (UnimplementedCommunityServiceServer) testEmbeddedByValue()                          {}
@@ -92,20 +92,20 @@ func RegisterCommunityServiceServer(s grpc.ServiceRegistrar, srv CommunityServic
 	s.RegisterService(&CommunityService_ServiceDesc, srv)
 }
 
-func _CommunityService_Email_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CommunityService_IsPeerExist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmailIn)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CommunityServiceServer).Email(ctx, in)
+		return srv.(CommunityServiceServer).IsPeerExist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CommunityService_Email_FullMethodName,
+		FullMethod: CommunityService_IsPeerExist_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommunityServiceServer).Email(ctx, req.(*EmailIn))
+		return srv.(CommunityServiceServer).IsPeerExist(ctx, req.(*EmailIn))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -118,8 +118,8 @@ var CommunityService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CommunityServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Email",
-			Handler:    _CommunityService_Email_Handler,
+			MethodName: "IsPeerExist",
+			Handler:    _CommunityService_IsPeerExist_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
