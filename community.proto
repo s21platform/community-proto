@@ -6,6 +6,7 @@ option go_package = "./community-proto";
 service CommunityService {
   // Method for checking that the user is a school 21's student
   rpc IsPeerExist (EmailIn) returns (EmailOut);
+  rpc SearchPeers (SearchPeersIn) returns (SearchPeersOut){};
 }
 
 // Data for searching for matches in peers' info
@@ -17,4 +18,18 @@ message EmailIn {
 // Response with found match
 message EmailOut {
   bool IsExist = 1;
+}
+
+message SearchPeersIn {
+  string substring = 1;
+  int64 limit = 2;
+  int64 offset = 3;
+}
+
+message SearchPeer {
+  string login = 1;
+}
+
+message SearchPeersOut {
+  repeated SearchPeer searchPeers = 1;
 }

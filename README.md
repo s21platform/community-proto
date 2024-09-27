@@ -6,6 +6,9 @@
 - [community.proto](#community-proto)
     - [EmailIn](#-EmailIn)
     - [EmailOut](#-EmailOut)
+    - [SearchPeer](#-SearchPeer)
+    - [SearchPeersIn](#-SearchPeersIn)
+    - [SearchPeersOut](#-SearchPeersOut)
   
     - [CommunityService](#-CommunityService)
   
@@ -49,6 +52,53 @@ Response with found match
 
 
 
+
+<a name="-SearchPeer"></a>
+
+### SearchPeer
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| login | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="-SearchPeersIn"></a>
+
+### SearchPeersIn
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| substring | [string](#string) |  |  |
+| limit | [int64](#int64) |  |  |
+| offset | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="-SearchPeersOut"></a>
+
+### SearchPeersOut
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| searchPeers | [SearchPeer](#SearchPeer) | repeated |  |
+
+
+
+
+
  
 
  
@@ -64,6 +114,7 @@ Service with peers&#39; info from edu platform
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | IsPeerExist | [.EmailIn](#EmailIn) | [.EmailOut](#EmailOut) | Method for checking that the user is a school 21&#39;s student |
+| SearchPeers | [.SearchPeersIn](#SearchPeersIn) | [.SearchPeersOut](#SearchPeersOut) |  |
 
  
 
