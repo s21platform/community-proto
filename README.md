@@ -6,6 +6,8 @@
 - [community.proto](#community-proto)
     - [EmailIn](#-EmailIn)
     - [EmailOut](#-EmailOut)
+    - [GetSchoolDataIn](#-GetSchoolDataIn)
+    - [GetSchoolDataOut](#-GetSchoolDataOut)
     - [SearchPeer](#-SearchPeer)
     - [SearchPeersIn](#-SearchPeersIn)
     - [SearchPeersOut](#-SearchPeersOut)
@@ -31,7 +33,7 @@ Data for searching for matches in peers&#39; info
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| Email | [string](#string) |  | User&#39;s E-mail address |
+| email | [string](#string) |  | User&#39;s E-mail address |
 
 
 
@@ -46,7 +48,38 @@ Response with found match
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| IsExist | [bool](#bool) |  |  |
+| isExist | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="-GetSchoolDataIn"></a>
+
+### GetSchoolDataIn
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| nickName | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="-GetSchoolDataOut"></a>
+
+### GetSchoolDataOut
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| className | [string](#string) |  |  |
+| parallelName | [string](#string) |  |  |
 
 
 
@@ -115,6 +148,7 @@ Service with peers&#39; info from edu platform
 | ----------- | ------------ | ------------- | ------------|
 | IsPeerExist | [.EmailIn](#EmailIn) | [.EmailOut](#EmailOut) | Method for checking that the user is a school 21&#39;s student |
 | SearchPeers | [.SearchPeersIn](#SearchPeersIn) | [.SearchPeersOut](#SearchPeersOut) |  |
+| GetPeerSchoolData | [.GetSchoolDataIn](#GetSchoolDataIn) | [.GetSchoolDataOut](#GetSchoolDataOut) |  |
 
  
 

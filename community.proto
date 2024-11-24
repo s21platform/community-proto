@@ -22,12 +22,12 @@ message GetSchoolDataOut {
 // Data for searching for matches in peers' info
 message EmailIn {
   // User's E-mail address
-  string Email = 1;
+  string email = 1;
 }
 
 // Response with found match
 message EmailOut {
-  bool IsExist = 1;
+  bool isExist = 1;
 }
 
 message SearchPeersIn {
