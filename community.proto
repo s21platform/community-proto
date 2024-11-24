@@ -7,6 +7,16 @@ service CommunityService {
   // Method for checking that the user is a school 21's student
   rpc IsPeerExist (EmailIn) returns (EmailOut);
   rpc SearchPeers (SearchPeersIn) returns (SearchPeersOut){};
+  rpc GetPeerSchoolData(GetSchoolDataIn) returns (GetSchoolDataOut){};
+}
+
+message GetSchoolDataIn {
+  string nickName = 1;
+}
+
+message GetSchoolDataOut {
+    string className = 1;
+    string parallelName = 2;
 }
 
 // Data for searching for matches in peers' info
