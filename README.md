@@ -8,6 +8,8 @@
     - [EmailOut](#-EmailOut)
     - [GetSchoolDataIn](#-GetSchoolDataIn)
     - [GetSchoolDataOut](#-GetSchoolDataOut)
+    - [IsUserStaffOut](#-IsUserStaffOut)
+    - [LoginIn](#-LoginIn)
     - [SearchPeer](#-SearchPeer)
     - [SearchPeersIn](#-SearchPeersIn)
     - [SearchPeersOut](#-SearchPeersOut)
@@ -86,6 +88,36 @@ Response with found match
 
 
 
+<a name="-IsUserStaffOut"></a>
+
+### IsUserStaffOut
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| isStaff | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="-LoginIn"></a>
+
+### LoginIn
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| login | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="-SearchPeer"></a>
 
 ### SearchPeer
@@ -149,6 +181,7 @@ Service with peers&#39; info from edu platform
 | IsPeerExist | [.EmailIn](#EmailIn) | [.EmailOut](#EmailOut) | Method for checking that the user is a school 21&#39;s student |
 | SearchPeers | [.SearchPeersIn](#SearchPeersIn) | [.SearchPeersOut](#SearchPeersOut) |  |
 | GetPeerSchoolData | [.GetSchoolDataIn](#GetSchoolDataIn) | [.GetSchoolDataOut](#GetSchoolDataOut) |  |
+| isUserStaff | [.LoginIn](#LoginIn) | [.IsUserStaffOut](#IsUserStaffOut) |  |
 
  
 
