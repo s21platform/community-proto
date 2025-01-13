@@ -22,6 +22,7 @@ const (
 	CommunityService_IsPeerExist_FullMethodName       = "/CommunityService/IsPeerExist"
 	CommunityService_SearchPeers_FullMethodName       = "/CommunityService/SearchPeers"
 	CommunityService_GetPeerSchoolData_FullMethodName = "/CommunityService/GetPeerSchoolData"
+	CommunityService_IsUserStaff_FullMethodName       = "/CommunityService/isUserStaff"
 )
 
 // CommunityServiceClient is the client API for CommunityService service.
@@ -34,6 +35,7 @@ type CommunityServiceClient interface {
 	IsPeerExist(ctx context.Context, in *EmailIn, opts ...grpc.CallOption) (*EmailOut, error)
 	SearchPeers(ctx context.Context, in *SearchPeersIn, opts ...grpc.CallOption) (*SearchPeersOut, error)
 	GetPeerSchoolData(ctx context.Context, in *GetSchoolDataIn, opts ...grpc.CallOption) (*GetSchoolDataOut, error)
+	IsUserStaff(ctx context.Context, in *LoginIn, opts ...grpc.CallOption) (*IsUserStaffOut, error)
 }
 
 type communityServiceClient struct {
@@ -74,6 +76,16 @@ func (c *communityServiceClient) GetPeerSchoolData(ctx context.Context, in *GetS
 	return out, nil
 }
 
+func (c *communityServiceClient) IsUserStaff(ctx context.Context, in *LoginIn, opts ...grpc.CallOption) (*IsUserStaffOut, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsUserStaffOut)
+	err := c.cc.Invoke(ctx, CommunityService_IsUserStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommunityServiceServer is the server API for CommunityService service.
 // All implementations must embed UnimplementedCommunityServiceServer
 // for forward compatibility.
@@ -84,6 +96,7 @@ type CommunityServiceServer interface {
 	IsPeerExist(context.Context, *EmailIn) (*EmailOut, error)
 	SearchPeers(context.Context, *SearchPeersIn) (*SearchPeersOut, error)
 	GetPeerSchoolData(context.Context, *GetSchoolDataIn) (*GetSchoolDataOut, error)
+	IsUserStaff(context.Context, *LoginIn) (*IsUserStaffOut, error)
 	mustEmbedUnimplementedCommunityServiceServer()
 }
 
@@ -102,6 +115,9 @@ func (UnimplementedCommunityServiceServer) SearchPeers(context.Context, *SearchP
 }
 func (UnimplementedCommunityServiceServer) GetPeerSchoolData(context.Context, *GetSchoolDataIn) (*GetSchoolDataOut, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPeerSchoolData not implemented")
+}
+func (UnimplementedCommunityServiceServer) IsUserStaff(context.Context, *LoginIn) (*IsUserStaffOut, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsUserStaff not implemented")
 }
 func (UnimplementedCommunityServiceServer) mustEmbedUnimplementedCommunityServiceServer() {}
 func (UnimplementedCommunityServiceServer) testEmbeddedByValue()                          {}
@@ -178,6 +194,24 @@ func _CommunityService_GetPeerSchoolData_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommunityService_IsUserStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginIn)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommunityServiceServer).IsUserStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommunityService_IsUserStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommunityServiceServer).IsUserStaff(ctx, req.(*LoginIn))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CommunityService_ServiceDesc is the grpc.ServiceDesc for CommunityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -196,6 +230,10 @@ var CommunityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPeerSchoolData",
 			Handler:    _CommunityService_GetPeerSchoolData_Handler,
+		},
+		{
+			MethodName: "isUserStaff",
+			Handler:    _CommunityService_IsUserStaff_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
